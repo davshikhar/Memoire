@@ -46,7 +46,6 @@ public class UserScheduler {
     //    @Scheduled(cron="0 0 9 * * SUN")
     @Scheduled(cron="0 0/1 * ? * *")
     public void fetchUserAndMail(){
-//        List<User> users = userRepositoryImpl.getUserForSA();
         List<User> users = userEntryRepo.findAll();
         log.info("Scheduler running, users found: {}", users.size());// for debugging
         for(User user:users){

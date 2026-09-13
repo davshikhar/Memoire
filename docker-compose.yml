@@ -1,5 +1,17 @@
 version: '3.8'
 services:
+  app:
+    image: olib
+    container_name: app
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - kafka
+    restart: always
+
   zookeeper:
 #    image: confluentinc/cp-zookeeper:7.4.0 for dev
     image: confluentinc/cp-zookeeper:latest
@@ -22,7 +34,9 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
 #      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092 for development
       # for deployment on vm
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://13.71.85.185:9092
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://13.71.85.185:9092 for old vm
+#      for latest ec2 deployment
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: true
     restart: always

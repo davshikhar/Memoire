@@ -6,10 +6,7 @@ import org.example.springpilot.Repository.UserEntryRepo;
 import org.example.springpilot.Service.UserEntryService;
 import org.example.springpilot.Service.WeatherService;
 import org.example.springpilot.api.response.WeatherResponse;
-import org.example.springpilot.api.response.localtesting;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -142,6 +139,7 @@ public class UserController {
     @GetMapping("/city")
     public ResponseEntity<?> getCity(Authentication auth) {
         User user = userEntryService.findByUsername(auth.getName());
+
         return ResponseEntity.ok(Map.of("city",
                 user.getCity() != null ? user.getCity() : ""));
     }

@@ -26,5 +26,5 @@ jobs:
         run: |
           echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/ssh_key
           chmod 600 /home/runner/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.232.42.126 "docker compose down && docker rmi olib:latest && docker pull shikhar6082/olib:${{github.sha}} && docker tag shikhar6082/olib:${{github.sha}} olib && docker rmi shikhar6082/olib:${{github.sha}} && docker compose up -d --remove-orphans"
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@16.171.147.169 "docker compose down && docker rmi olib:latest || true && docker pull shikhar6082/olib:${{github.sha}} && docker tag shikhar6082/olib:${{github.sha}} olib && docker rmi shikhar6082/olib:${{github.sha}} && docker compose up -d --remove-orphans"
 
