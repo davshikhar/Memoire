@@ -53,7 +53,7 @@ public class PublicController {
         }
         catch(Exception e){
             log.error(" \u274C Exception came:",e);
-            return new ResponseEntity<>(" Incorrect username or password",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(" Incorrect username or password, check again!",HttpStatus.BAD_REQUEST);
         }
     }
 
