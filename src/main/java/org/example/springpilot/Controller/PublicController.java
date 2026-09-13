@@ -44,10 +44,11 @@ public class PublicController {
     @PostMapping("/login")
     public ResponseEntity<?> sigIn(@RequestBody User user){
         try{
-            //we will first authenticate the user and then give them the jwt token
+            //we will first authenticate the user and then give them the jwt token and then user proceeds
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String token = jwtUtil.generateToken(userDetails);
+
             return new ResponseEntity<>(Map.of("token", token), HttpStatus.OK);
         }
         catch(Exception e){
